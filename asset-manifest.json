@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Notepad/static/css/main.26867223.css",
-    "main.js": "/Notepad/static/js/main.d8a4d0b7.js",
+    "main.js": "/Notepad/static/js/main.514d3dce.js",
     "service-worker.js": "/Notepad/service-worker.js",
     "index.html": "/Notepad/index.html",
     "main.26867223.css.map": "/Notepad/static/css/main.26867223.css.map",
-    "main.d8a4d0b7.js.map": "/Notepad/static/js/main.d8a4d0b7.js.map"
+    "main.514d3dce.js.map": "/Notepad/static/js/main.514d3dce.js.map"
   },
   "entrypoints": [
     "static/css/main.26867223.css",
-    "static/js/main.d8a4d0b7.js"
+    "static/js/main.514d3dce.js"
   ]
 }
