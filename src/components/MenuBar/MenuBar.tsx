@@ -8,7 +8,7 @@ import {
   toggleTheme,
 } from "../../helpers";
 import "./MenuBar.scss";
-import { MdOutlineDone } from "react-icons/md";
+import {MdOutlineDone} from "react-icons/md"
 import { AiOutlineFontSize } from "react-icons/ai";
 import { AiOutlineInfo } from "react-icons/ai";
 import { RiFeedbackLine } from "react-icons/ri";
@@ -29,6 +29,8 @@ function MenuBar() {
         <button
           className="btn"
           onClick={() => setShowFile(!showFile)}
+          onMouseEnter={() => setShowFile(true)}
+          onMouseLeave={() => setShowFile(false)}
           onBlur={() => {
             setTimeout(() => setShowFile(false), 150);
           }}
@@ -38,6 +40,9 @@ function MenuBar() {
         <div
           className="dropdown-content"
           style={{ display: showFile ? "block" : "none" }}
+          onMouseEnter={() => setShowFile(true)}
+          onMouseLeave={() => setShowFile(false)}
+
         >
           <button className="menu-btn btn" onClick={() => newFile({})}>
             New <kbd>Alt + N</kbd>
@@ -104,6 +109,8 @@ function MenuBar() {
         <button
           className="btn"
           onClick={() => setShowEdit(!showEdit)}
+          onMouseEnter={() => setShowEdit(true)}
+          onMouseLeave={() => setShowEdit(false)}
           onBlur={() => {
             setTimeout(() => setShowEdit(false), 150);
           }}
@@ -113,6 +120,8 @@ function MenuBar() {
         <div
           className="dropdown-content"
           style={{ display: showEdit ? "block" : "none" }}
+          onMouseEnter={() => setShowEdit(true)}
+          onMouseLeave={() => setShowEdit(false)}
         >
           <button className="menu-btn btn">
             Undo <kbd>Ctrl + Z</kbd>
@@ -177,6 +186,9 @@ function MenuBar() {
         <button
           className="btn"
           onClick={() => setShowView(!showView)}
+          onMouseEnter={() => setShowView(true)}
+          onMouseLeave={() => setShowView(false)}
+
           onBlur={() => {
             setTimeout(() => setShowView(false), 150);
           }}
@@ -186,6 +198,9 @@ function MenuBar() {
         <div
           className="dropdown-content"
           style={{ display: showView ? "block" : "none" }}
+          onMouseEnter={() => setShowView(true)}
+          onMouseLeave={() => setShowView(false)}
+
         >
           <button className="menu-btn btn">
             Fullscreen{" "}
@@ -204,6 +219,9 @@ function MenuBar() {
         <button
           className="btn"
           onClick={() => setShowHelp(!showHelp)}
+          onMouseEnter={() => setShowHelp(true)}
+          onMouseLeave={() => setShowHelp(false)}
+
           onBlur={() => {
             setTimeout(() => setShowHelp(false), 150);
           }}
@@ -213,6 +231,9 @@ function MenuBar() {
         <div
           className="dropdown-content"
           style={{ display: showHelp ? "block" : "none" }}
+          onMouseEnter={() => setShowHelp(true)}
+          onMouseLeave={() => setShowHelp(false)}
+
         >
           <button className="menu-btn btn">
             Send Feedback
