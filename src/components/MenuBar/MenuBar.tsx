@@ -14,6 +14,7 @@ function MenuBar() {
       <Mode />
       <View />
       <Help />
+      
     </div>
   );
 }

@@ -6,6 +6,7 @@ import {
   VscChromeClose,
 } from "react-icons/vsc";
 import { toggleFullscreen } from "../../helpers";
+import PromptBox from "../promptBox/promptBox";
 
 function TitleBar() {
   return (
@@ -25,6 +26,7 @@ function TitleBar() {
           <VscChromeClose />
         </button>
       </section>
+      <PromptBox />
     </div>
   );
 }

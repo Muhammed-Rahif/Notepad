@@ -21,7 +21,7 @@ function TextArea() {
   const [textAreaContent, setTextAreaContent] = useState(() => {
     return getFromLocalStorage("notepad_textarea_content") || "";
   });
-
+  
   function handleTextAreaChange(
     event:
       | ChangeEvent<HTMLTextAreaElement>
@@ -36,16 +36,17 @@ function TextArea() {
       event.target as HTMLTextAreaElement
     );
   }
-
+  
   useEffect(() => {
     let textAreaElem: HTMLTextAreaElement = document.getElementById(
       "text-area"
     ) as HTMLTextAreaElement;
     enableTabIndentation(textAreaElem);
-
     new UserPreference().setFontSettings();
   }, []);
-
+  
+  
+ 
   return (
     <>
       <textarea

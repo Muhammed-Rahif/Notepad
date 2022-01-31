@@ -7,6 +7,7 @@ import {
   DrawPadRefContext,
 } from "../../../contexts/Context";
 import ChangeFontBody from "./ChangeFontBody";
+import { FindContext } from "../../../contexts/findContext";
 
 function Edit() {
   const [showEdit, setShowEdit] = useState(false);
@@ -14,6 +15,7 @@ function Edit() {
   const { drawPadRef } = useContext(DrawPadRefContext);
   const { alertBox, setAlertBox } = useContext(AlertBoxContext);
   const fontChangesRef = useRef<{ handleOkClick(): void }>();
+ 
 
   const handleFontClick = () => {
     !alertBox
@@ -37,6 +39,12 @@ function Edit() {
       : setAlertBox(null);
   };
 
+ const { setCancel } = useContext(FindContext);
+  const handleFind = () => {
+    setCancel(true)
+   
+  }
+
   return (
     <div className="dropdown">
       <button
@@ -46,6 +54,7 @@ function Edit() {
       >
         Edit
       </button>
+   
       <div
         className="dropdown-content"
         style={{ display: showEdit ? "block" : "none" }}
@@ -88,14 +97,13 @@ function Edit() {
             </button>
             <hr />
 
-            <button className="menu-btn btn">
+            <button className="menu-btn btn" onClick={handleFind}>
               Find <kbd>Ctrl + F</kbd>
             </button>
             <button className="menu-btn btn">
               Go to <kbd>Ctrl + G</kbd>
             </button>
             <hr />
-
             <button
               className="menu-btn btn"
               onClick={() =>

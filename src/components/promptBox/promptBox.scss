@@ -1,0 +1,30 @@
+.promptContainer {
+    right:25rem;
+    position:absolute;
+    width:30%;
+}
+.promptCancel {
+   border:none;
+   width:10%;
+   height:5vh;
+   background:none;
+   cursor:pointer;
+   color:red;
+   font-size:1.5rem;
+}
+.promptInput {
+    border:5px solid #d2fbed;
+    height:2vh;
+    width:90%;
+    outline:none;
+    font-size:1rem;
+    font-family:sans-serif;
+    padding:1rem;
+}
+@media only screen and (max-width: 767px) {
+   .promptContainer {
+    width:60%;
+    right: 7rem;
+    top: 0rem;
+   }
+  }
