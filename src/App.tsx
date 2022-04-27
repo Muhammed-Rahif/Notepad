@@ -6,6 +6,7 @@ import WorkArea from "./components/WorkArea/WorkArea";
 import TitleBar from "./components/TitleBar/TitleBar";
 import { handleOpenFileChange, UserPreference } from "./helpers";
 import "./App.scss";
+import FindPrompt from "./components/FindPrompt/FindPrompt";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
         accept="text/plain"
         onChange={handleOpenFileChange}
       />
+      <FindPrompt />
     </Shortcuts>
   );
 }

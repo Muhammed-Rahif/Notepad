@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { AlertBox, AlertBoxContextType } from "../types/AlertBox";
 import { DrawModeContextType, DrawPadRefContextType } from "../types/DrawPad";
+import { FindPromptContextType } from "../types/FindPrompt";
 
 export const AlertBoxContext = createContext<AlertBoxContextType>(
   {} as AlertBoxContextType
@@ -14,10 +15,15 @@ export const DrawPadRefContext = createContext<DrawPadRefContextType>(
   {} as DrawPadRefContextType
 );
 
+export const FindPromptContext = createContext<FindPromptContextType>(
+  {} as FindPromptContextType
+);
+
 function Context({ children }: { children: ReactNode }) {
   const [alertBox, setAlertBox] = useState<AlertBox>(null);
   const [drawMode, setDrawMode] = useState<boolean>(false);
   const [drawPadRef, setDrawPadRef] = useState({});
+  const [showPrompt, setShowPrompt] = useState(false);
 
   // This function will also set 'isDrawMode' property in localStorage
   const setDrawModeTo = (isDrawMode: boolean) => {
@@ -38,7 +44,9 @@ function Context({ children }: { children: ReactNode }) {
         value={{ drawMode, setDrawMode: setDrawModeTo }}
       >
         <DrawPadRefContext.Provider value={{ drawPadRef, setDrawPadRef }}>
-          {children}
+          <FindPromptContext.Provider value={{ setShowPrompt, showPrompt }}>
+            {children}
+          </FindPromptContext.Provider>
         </DrawPadRefContext.Provider>
       </DrawModeContext.Provider>
     </AlertBoxContext.Provider>

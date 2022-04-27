@@ -5,6 +5,7 @@ import {
   AlertBoxContext,
   DrawModeContext,
   DrawPadRefContext,
+  FindPromptContext,
 } from "../../../contexts/Context";
 import ChangeFontBody from "./ChangeFontBody";
 
@@ -14,6 +15,7 @@ function Edit() {
   const { drawPadRef } = useContext(DrawPadRefContext);
   const { alertBox, setAlertBox } = useContext(AlertBoxContext);
   const fontChangesRef = useRef<{ handleOkClick(): void }>();
+  const { setShowPrompt: setShowFindPrompt } = useContext(FindPromptContext);
 
   const handleFontClick = () => {
     !alertBox
@@ -88,7 +90,10 @@ function Edit() {
             </button>
             <hr />
 
-            <button className="menu-btn btn">
+            <button
+              className="menu-btn btn"
+              onClick={e => setShowFindPrompt(true)}
+            >
               Find <kbd>Ctrl + F</kbd>
             </button>
             <button className="menu-btn btn">

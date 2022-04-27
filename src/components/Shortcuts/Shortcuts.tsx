@@ -1,6 +1,10 @@
 import React, { ReactNode, useContext } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { DrawModeContext, DrawPadRefContext } from "../../contexts/Context";
+import {
+  DrawModeContext,
+  DrawPadRefContext,
+  FindPromptContext,
+} from "../../contexts/Context";
 import {
   downloadFile,
   insertTimeAndDate,
@@ -11,6 +15,8 @@ import {
 function Shortcuts({ children }: { children: ReactNode }) {
   const { drawPadRef } = useContext(DrawPadRefContext);
   const { drawMode } = useContext(DrawModeContext);
+  const { setShowPrompt: setShowFindPrompt, showPrompt } =
+    useContext(FindPromptContext);
 
   useHotkeys(
     "ctrl+z",
@@ -87,6 +93,16 @@ function Shortcuts({ children }: { children: ReactNode }) {
       );
     },
     { enableOnTags: ["TEXTAREA"] }
+  );
+
+  useHotkeys(
+    "ctrl+f",
+    e => {
+      e.preventDefault();
+      e.stopPropagation();
+      setShowFindPrompt(!showPrompt);
+    },
+    { enableOnTags: ["TEXTAREA", "INPUT", "SELECT"] }
   );
 
   useHotkeys(
