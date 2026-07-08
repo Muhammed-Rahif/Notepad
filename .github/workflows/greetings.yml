@@ -27,6 +27,11 @@ jobs:
         with:
           script: |
             const user = context.payload.sender.login;
+            if (user === context.repo.owner) {
+              core.setOutput('isFirstTime', false);
+              core.setOutput('totalContributions', 0);
+              return;
+            }
             const [userIssues, userPulls] = await Promise.all([
               github.rest.issues.listForRepo({
                 owner: context.repo.owner,
@@ -54,6 +59,7 @@ jobs:
         with:
           script: |
             const user = context.payload.sender.login;
+            if (user === context.repo.owner) return;
             const isIssue = !!context.payload.issue;
             const isPR = !!context.payload.pull_request;
             const isFirstTime = '${{ steps.check_contributions.outputs.isFirstTime }}' === 'true';
@@ -108,6 +114,7 @@ jobs:
         with:
           script: |
             const assignee = context.payload.assignee.login;
+            if (assignee === context.repo.owner) return;
             const issueNumber = context.payload.issue.number;
 
             // Fetch issues and pull requests created by the assignee
@@ -155,25 +162,6 @@ jobs:
               body: message
             });
 
-      - name: Assign User Guidance
-        if: ${{ github.event.action == 'assigned' && steps.check_contributions.outputs.totalContributions < 3 }}
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const assignee = context.payload.assignee.login;
-            const issueNumber = context.payload.issue.number;
-            const message = `🛠️ **Heads up, @${assignee}!**  
-            You've been assigned an issue in **Notpad** – ready to make your mark? 🚀  
-            Since you're relatively new here, we highly recommend checking out our [CONTRIBUTING.md](https://github.com/Muhammed-Rahif/Notpad/blob/main/CONTRIBUTING.md).  
-            It’s packed with helpful tips, guidelines, and best practices to ensure a smooth contribution experience.  
-            We’re excited to see what you’ll bring to the table – happy coding! 💻✨`;
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              body: message
-            });
 
       - name: Thank Contributor When PR is Merged
         if: ${{ github.event.action == 'closed' && github.event.pull_request.merged == true }}
@@ -181,6 +169,7 @@ jobs:
         with:
           script: |
             const pr = context.payload.pull_request;
+            if (pr.user.login === context.repo.owner) return;
             const message = `🎉 Congratulations, @${pr.user.login}! Your pull request has been successfully merged. 🥳🎈  
             You’ve just made **Notpad** better, and we couldn’t be more thankful. 🙌  
             Your contribution is now part of the project, helping users and contributors around the world. 🌍  
